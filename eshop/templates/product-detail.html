@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+<!-- Product Detail Start -->
+        <style >
+            .m{
+               height: 550px;
+                                        width: 80%;
+                                       margin-top: 10px;
+                                      margin-bottom: 10px;
+                                      margin-right: 15px;
+                                      margin-left: 8px;
+                                        padding-top: 5px;
+                                        padding-right: 3px;
+                                        padding-bottom: 5px;
+                                        padding-left: 8px;
+                                       
+            }
+            .n{
+                max-width: 100%;
+                max-height: 700px;
+                min-height: 400px;
+            }
+        </style>
+        <div class="product-detail">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="product-detail-top">
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <div class="product-slider-single normal-slider">
+
+                                       <div class="m"><img src="{{form.image.url}}" class="n" alt="Product Image"></div> 
+                                       <div class="m"> <img src="{{form.image1.url}}" class="n" alt="Product Image"></div>
+                                       {%if form.image2%}
+                                        <div class="m"><img src="{{form.image2.url}}" class="n" alt="Product Image"></div>
+                                        {%endif%}
+                                       {%if form.image3%}
+                                        <div class="m"><img src="{{form.image3.url}}" class="n" alt="Product Image"></div>
+                                       {%endif%}
+                                        
+                                    </div>
+                                    <div class="product-slider-single-nav normal-slider">
+                                        <div class="slider-nav-img"><img src="{{form.image.url}}"  alt="Product Image"></div>
+                                        <div class="slider-nav-img"><img src="{{form.image1.url}}" alt="Product Image"></div>
+                                        {%if form.image2%}
+                                        <div class="slider-nav-img"><img src="{{form.image2.url}}" alt="Product Image"></div>
+                                        {%endif%}
+                                        {%if form.image3%}
+                                        <div class="slider-nav-img"><img src="{{form.image3.url}}" alt="Product Image"></div>
+                                        {%endif%}
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="product-content">
+                                        <div class="title"><h2>{{form.name}}</h2></div>
+                                        <p>
+                                               {{form.desc}}
+                                               </p>
+                                        
+                                        <div class="price">
+                                            <h4>Price:</h4>
+                                            <p>₹{{form.price}} <span>₹{{form.dis_price}}</span></p>
+                                        </div>
+                                        <!-- <div class="tab-content">
+                                           <div id="description" class="container tab-pane active">
+                                               
+                                               <p>
+                                               {{form.desc}}
+                                               </p>
+                                            </div>
+                                        </div> -->
+                                        
+                                        <div class="p-size">
+                                            <h4>Size:</h4>
+                                            <div class="btn-group btn-group-sm">
+                                                <button type="button" class="btn">S</button>
+                                                <button type="button" class="btn">M</button>
+                                                <button type="button" class="btn">L</button>
+                                                <button type="button" class="btn">XL</button>
+                                            </div> 
+                                        </div>
+                                        {%if user.is_authenticated%}
+                                        {%if s%}
+                                        <div class="action">
+                                            <a class="btn" href="{%url 'showcart'%}"><i class="fa fa-shopping-cart"></i>Go to Cart</a>
+                                            <a class="btn" href="{%url 'buy' form.id %}"><i class="fa fa-shopping-bag"></i>Buy Now</a>
+                                        </div>
+                                        {%else%}
+    
+                                        <div class="action">
+                                            <a class="btn" href="{%url 'cart' form.id%}"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
+                                            <a class="btn" href="{%url 'buy' form.id %}"><i class="fa fa-shopping-bag"></i>Buy Now</a>
+                                        </div>
+                                        {%endif%}
+                                        {%else%}
+                                        <div class="action">
+                                            <a class="btn" href="{%url 'login'%}"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
+                                            <a class="btn" href="{%url 'login'%}"><i class="fa fa-shopping-bag"></i>Buy Now</a>
+                                        </div>
+                                        
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row product-detail-bottom">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-pills nav-justified">
+                                    
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#reviews">Reviews ({{m}})</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    
+                                    
+                                    <div id="reviews" class="container tab-pane fade">
+                                        {%for rs in r%}
+                                        <div class="reviews-submitted">
+                                            <div class="reviewer">{{rs.user}} <span>{{rs.date}}</span></div>
+                                            
+                                            <p>
+                                                {{rs.review}}
+                                            </p>
+                                        </div>
+                                        {%endfor%}
+                                        <div class="reviews-submit">
+                                            <h4>Give your Review:</h4>
+                                           
+                                            <form action="{%url 'review' form.id%}" class="row form" method="POST">
+                                                {% csrf_token %}
+                                                 
+                                                <div class="col-sm-12">
+                                                    <label for="Review"> <h6>{{error}}</h6></label><br>
+                                                    <input type="text" id="Review" name="Review" placeholder="Review"><br>
+
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <button type="submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style >
+                                    .l{
+                                        height: 250px;
+                                        width: 80%;
+                                       margin-top: 10px;
+                                      margin-bottom: 10px;
+                                      margin-right: 15px;
+                                      margin-left: 8px;
+                                        padding-top: 5px;
+                                        padding-right: 3px;
+                                        padding-bottom: 5px;
+                                        padding-left: 8px;
+                                    }
+                                    .p{
+                                        max-width: 100%;
+                                        max-height: 280px;
+                                        min-height: 280px;
+                                    }
+                                </style>
+                        <div class="product">
+                            <div class="section-header">
+                                <h1>Related Products</h1>
+                            </div>
+                            
+                            <div class="row align-items-center product-slider product-slider-3">
+                                
+                                
+                                {%for lm in l%}
+                                <div class="col-lg-3">
+                                    <div class="product-item">
+                                        <div class="product-title">
+                                            <a href="#">{{lm.name}}</a>
+                                            <div class="ratting">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="product-image">
+                                            <a href="product-detail.html">
+                                                <div class="l"><img src="{{lm.image.url}}" class="p" alt="Product Image"></div>
+                                            </a>
+                                            <div class="product-action">
+                                                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                                <a href="#"><i class="fa fa-heart"></i></a>
+                                                <a href="#"><i class="fa fa-search"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-price">
+                                            <h3><span>₹</span>{{lm.price}}</h3>
+                                            <a class="btn" href="{%url 'detail' lm.id%}"><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Side Bar Start -->
+                    
+        <!-- Brand End -->
+
+</body>
+{% endblock %}
+        
+        
+        
+        
+

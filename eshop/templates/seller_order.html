@@ -1,0 +1,108 @@
+{%extends 'seller_base.html'%}
+{%block content%}
+
+
+
+<body>
+	
+	
+		
+	</header><!--/header-->
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  
+				  <center><h3><li class="active">Orders</li></h3></center>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+                <style >
+                	.m{
+                		width:59%;
+                		 padding: 100px;
+    padding-bottom: 0px;
+    padding-left: -10;
+                	}
+                	.th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+    width: 35%;
+}
+.s{
+    width: 15%;
+}
+.g{
+    width: 15%;
+}
+.o{
+    width: 15%;
+}
+                </style>
+				<div class="table-responsive">
+                                
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                        	<th class="s">Customer </th>
+                                            <th class="th">Product</th>
+                                            
+                                            <th class="g">Quantity</th>
+                                            <th class="o">Amount</th>
+                                            
+                                            <th>Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    	<style>
+                                    		.l{
+                                    			width: 15%;
+                                    		}
+                                    	</style>
+                                        {%for fm in a%}
+
+                                        <tr>
+                                        	<td>{{fm.user}}</td>
+                                            <td><a href=""><img src="{{fm.product.image.url}}" alt="Image" class="l"></a>
+                                                    {{fm.product.name}}
+                                               
+                                            </td>
+                                            
+                                            <td>
+                                                
+                                                    {{fm.quantity}}
+                                                    
+                                                
+                                            </td>
+                                            <td>₹{{fm.amount}}</td>
+                                            {% if "Pending" in fm.status %}
+                                            <td><a href="{%url 'accept_order' fm.id%}"><input type="submit" value="Accept" class="btn float-left login_btn"></a></td>
+                                            {%else%}
+                                            <td>{{fm.status}}</td>
+                                            {%endif%}
+                                        </tr>
+
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+						
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	
+
+	
+	
+
+
+    
+</body>
+
+{%endblock%}

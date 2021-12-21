@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+
+      .menu .item {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .menu .item a {
+        color: black;
+        font-size: 16px;
+        text-decoration: none;
+        display: block;
+        padding: 5px 30px;
+        line-height: 60px;
+      }
+
+      .menu .item a:hover {
+        background: whitesmoke;
+        transition: 0.3s ease;
+      }
+
+      .menu .item i {
+        margin-right: 15px;
+      }
+
+      #a {
+        float: left;
+        padding-bottom: 477px;
+        width: 15%;
+        background: rgba(236, 135, 135, 0.932);
+        
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+
+    <div class="container">
+      <div class="menu" id="a">
+        <div class="item"><a href="{%url 'vendor'%}" target="b"><i class="fa fa-plus-square" href="url"></i>Add Product</a></div>
+        <div class="item">
+          <a href="{%url 'seller_product'%}" target="b"><i class="fas fa-table" href="url"></i>Added Product</a>
+
+        </div>
+        <div class="item"><a href="{%url 'seller_order'%}" target="b"><i class="fas fa-th" href="url"></i>Orders</a></div>
+        <div class="item">
+          <a href="{%url 'profile'%}" target="b"><i class="fa fa-user" ></i>Profile</a>
+
+        </div>
+        
+        <div class="item">
+          <a href="{%url 'logout'%}" ><i class="fa fa-sign-out-alt"></i>Logout</a>
+
+        </div>
+      </div>
+      <div class="ac" id="b">
+        <iframe style="border:none;" src="{%url 'seller_order'%}" width="85%" height="750" name="b"></iframe>
+      </div>
+    </div>
+
+  </body>
+
+</html>

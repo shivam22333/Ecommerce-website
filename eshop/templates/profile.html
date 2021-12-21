@@ -1,0 +1,81 @@
+{% extends 'seller_base.html' %}
+{% load static %}
+{% block content%}
+
+<body>
+ <!-- Login Start -->
+                                       <style >
+                                   .errorlist{
+                                    list-style-type: none;
+                                    color: blue;
+                                    font-size: 10px
+                                    margin: 0px;
+                                    padding: 0px;
+                                   }
+                                   .l{
+                                    color: red;
+                                     margin: 0px;
+                                    padding: 0px;
+                                   }
+                                   .r{
+                                    margin: 30px;
+                                   }
+                                   .m{
+                                    margin: 40px;
+                                   }
+                               </style>
+                               
+                               <h1 class="m">Account Details:</h1>
+
+                                <div class="r">
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>Name:{{m.name}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>Email:{{m.email}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>Mobile:{{m.mobile}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>State:{{m.state}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>City:{{m.city}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>Pincode:{{m.pincode}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <label class="l"><h3>Address:{{m.pickup_address}}</h3></label> 
+                                       <p></p>
+                                    </div>
+                                </div>
+                           
+                            
+                                   
+                                   
+                                 
+                                  
+                                
+                                
+                                
+        <!-- Login End -->
+</body>
+
+
+{% endblock %}
+        
+       
+        
+

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+   <style>
+      .center {
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      }
+      .l{
+         width: 500px;
+         height: 10px;
+      }
+   </style>
+</head>
+<body>
+   <div class="center">
+      <h1 class="l"><i class="fas fa-check-circle"></i></h1>
+      <h3>
+         Transaction Successful!
+        
+      </h3>
+      <h5>
+         <a href="{%url 'index'%}">
+         Continue shopping
+         </a>
+      </h5>
+   </div>
+</body>
+{% endblock content %}
